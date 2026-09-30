@@ -17,6 +17,31 @@
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
+    <div class="welcome-overlay" id="welcomeOverlay" aria-live="polite">
+      <div class="welcome-card">
+        <p class="eyebrow welcome-eyebrow">Bienvenida</p>
+        <h2 id="welcomeTitle">¡Te damos la bienvenida a VibrA Studio!</h2>
+        <p id="welcomeText">
+          Aquí encontrarás cortes modernos, peinados con estilo y una atención
+          que te hace sentir en casa desde el primer minuto.
+        </p>
+
+        <form id="welcomeForm" class="welcome-form">
+          <label class="sr-only" for="userNameInput">Tu nombre</label>
+          <input
+            id="userNameInput"
+            type="text"
+            maxlength="30"
+            placeholder="Escribe tu nombre"
+            autocomplete="given-name"
+          />
+          <button class="btn btn-primary" id="enterButton" type="submit">
+            Entrar al salón
+          </button>
+        </form>
+      </div>
+    </div>
+
     <div class="page-bg"></div>
 
     <header class="topbar container">
