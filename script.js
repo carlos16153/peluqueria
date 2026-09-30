@@ -5,6 +5,8 @@ document.addEventListener('DOMContentLoaded', () => {
   const userNameInput = document.getElementById('userNameInput');
   const welcomeTitle = document.getElementById('welcomeTitle');
   const welcomeText = document.getElementById('welcomeText');
+  const bookingForm = document.querySelector('.booking-form');
+  const bookingMessage = document.getElementById('bookingMessage');
   const storageKey = 'vibraStudioNames';
 
   if (footerInfo && !footerInfo.dataset.ready) {
@@ -47,5 +49,15 @@ document.addEventListener('DOMContentLoaded', () => {
     setTimeout(() => {
       welcomeOverlay.classList.add('visible');
     }, 150);
+  }
+
+  if (bookingForm && bookingMessage) {
+    bookingForm.addEventListener('submit', (event) => {
+      event.preventDefault();
+      const name = document.getElementById('nombre').value.trim();
+
+      bookingMessage.textContent = `¡Gracias, ${name}, por completar tu solicitud de cita!`;
+      bookingMessage.hidden = false;
+    });
   }
 });

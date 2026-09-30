@@ -231,9 +231,41 @@
           </blockquote>
         </div>
       </section>
+
+      <section class="booking container" id="contacto">
+        <div class="section-head">
+          <p class="eyebrow">Reserva</p>
+          <h2>Cuéntanos tu pedido y tu horario.</h2>
+        </div>
+
+        <form class="booking-form">
+          <div class="field">
+            <label for="nombre">Nombre</label>
+            <input id="nombre" type="text" placeholder="Tu nombre" required />
+          </div>
+
+          <div class="field">
+            <label for="servicio">Servicio deseado</label>
+            <input id="servicio" type="text" placeholder="Ej. Bob texturizado, balayage, peinado" required />
+          </div>
+
+          <div class="field">
+            <label for="fecha">Fecha y horario</label>
+            <input id="fecha" type="datetime-local" required />
+          </div>
+
+          <div class="field full-width">
+            <label for="pedido">Detalles del pedido</label>
+            <textarea id="pedido" rows="5" placeholder="Escribe lo que quieres conseguir con tu corte o peinado..." required></textarea>
+          </div>
+
+          <button type="submit" class="btn btn-primary">Enviar reserva</button>
+        </form>
+        <p class="booking-message" id="bookingMessage" role="status" aria-live="polite" hidden></p>
+      </section>
     </main>
 
-    <footer class="footer container" id="contacto">
+    <footer class="footer container">
       <div>
         <p class="eyebrow">Reserva</p>
         <h3>Llena de vida tu próximo look.</h3>
