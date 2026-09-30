@@ -99,7 +99,8 @@
 
         <div class="hero-art" aria-label="Diseño abstracto de peluquería">
           <div class="art-panel art-main">
-            <span class="label">Color</span>
+            <label class="label" for="hairColor">Elige un color</label>
+            <input class="color-picker" id="hairColor" type="color" value="#ff4d8d" aria-label="Elige el color de cabello que deseas" />
             <div class="orbit orbit-one"></div>
             <div class="orbit orbit-two"></div>
             <div class="orbit orbit-three"></div>
@@ -239,6 +240,7 @@
         </div>
 
         <form class="booking-form">
+          <input id="colorDeseado" name="colorDeseado" type="hidden" value="#ff4d8d" />
           <div class="field">
             <label for="nombre">Nombre</label>
             <input id="nombre" type="text" placeholder="Tu nombre" required />

@@ -340,7 +340,25 @@ h3 {
   inset: auto;
   position: relative;
   overflow: hidden;
-  background: linear-gradient(160deg, rgba(255, 77, 141, 0.12), rgba(255, 138, 61, 0.08), rgba(255, 255, 255, 0.02));
+  background: linear-gradient(160deg, color-mix(in srgb, var(--hair-choice, #ff4d8d) 22%, transparent), rgba(255, 138, 61, 0.08), rgba(255, 255, 255, 0.02));
+}
+
+.color-picker {
+  position: absolute;
+  top: 14px;
+  right: 18px;
+  width: 48px;
+  height: 38px;
+  padding: 3px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--panel);
+  cursor: pointer;
+}
+
+.color-picker:focus-visible {
+  outline: 2px solid var(--yellow);
+  outline-offset: 3px;
 }
 
 .label {
@@ -356,7 +374,7 @@ h3 {
 .orbit {
   position: absolute;
   border-radius: 50%;
-  border: 2px solid rgba(255, 255, 255, 0.3);
+  border: 2px solid color-mix(in srgb, var(--hair-choice, #ff4d8d) 55%, white);
 }
 
 .orbit-one {
@@ -373,7 +391,7 @@ h3 {
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
-  border-color: rgba(255, 209, 102, 0.9);
+  border-color: var(--hair-choice, #ff4d8d);
 }
 
 .orbit-three {
@@ -382,7 +400,7 @@ h3 {
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
-  border-color: rgba(56, 211, 159, 0.8);
+  border-color: color-mix(in srgb, var(--hair-choice, #ff4d8d) 55%, transparent);
 }
 
 .art-side {

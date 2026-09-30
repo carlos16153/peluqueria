@@ -7,7 +7,20 @@ document.addEventListener('DOMContentLoaded', () => {
   const welcomeText = document.getElementById('welcomeText');
   const bookingForm = document.querySelector('.booking-form');
   const bookingMessage = document.getElementById('bookingMessage');
+  const hairColorPicker = document.getElementById('hairColor');
+  const desiredColorInput = document.getElementById('colorDeseado');
+  const colorPanel = document.querySelector('.art-main');
   const storageKey = 'vibraStudioNames';
+
+  if (hairColorPicker && desiredColorInput && colorPanel) {
+    const updateHairColor = () => {
+      colorPanel.style.setProperty('--hair-choice', hairColorPicker.value);
+      desiredColorInput.value = hairColorPicker.value;
+    };
+
+    hairColorPicker.addEventListener('input', updateHairColor);
+    updateHairColor();
+  }
 
   if (footerInfo && !footerInfo.dataset.ready) {
     const year = document.createElement('p');
@@ -55,8 +68,9 @@ document.addEventListener('DOMContentLoaded', () => {
     bookingForm.addEventListener('submit', (event) => {
       event.preventDefault();
       const name = document.getElementById('nombre').value.trim();
+      const color = desiredColorInput?.value;
 
-      bookingMessage.textContent = `¡Gracias, ${name}, por completar tu solicitud de cita!`;
+      bookingMessage.textContent = `¡Gracias, ${name}, por completar tu solicitud de cita! Color elegido: ${color}.`;
       bookingMessage.hidden = false;
     });
   }
