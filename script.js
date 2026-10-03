@@ -10,7 +10,37 @@ document.addEventListener('DOMContentLoaded', () => {
   const hairColorPicker = document.getElementById('hairColor');
   const desiredColorInput = document.getElementById('colorDeseado');
   const colorPanel = document.querySelector('.art-main');
+  const backgroundVideo = document.getElementById('backgroundVideo');
+  const playBackgroundVideoButton = document.getElementById('playBackgroundVideo');
   const storageKey = 'vibraStudioNames';
+
+  if (backgroundVideo && playBackgroundVideoButton) {
+    let isPlaying = false;
+
+    const setVideoState = () => {
+      const backgroundVideoWrapper = document.querySelector('.video-bg');
+      if (backgroundVideoWrapper) {
+        backgroundVideoWrapper.classList.toggle('is-visible', isPlaying);
+      }
+
+      if (isPlaying) {
+        backgroundVideo.play();
+      } else {
+        backgroundVideo.pause();
+        backgroundVideo.currentTime = 0;
+      }
+
+      playBackgroundVideoButton.textContent = isPlaying ? 'Pausar fondo' : 'Reproducir fondo';
+    };
+
+    playBackgroundVideoButton.addEventListener('click', () => {
+      isPlaying = !isPlaying;
+      setVideoState();
+    });
+
+    backgroundVideo.muted = true;
+    setVideoState();
+  }
 
   if (hairColorPicker && desiredColorInput && colorPanel) {
     const updateHairColor = () => {
