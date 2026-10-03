@@ -10,13 +10,81 @@ document.addEventListener('DOMContentLoaded', () => {
   const hairColorPicker = document.getElementById('hairColor');
   const desiredColorInput = document.getElementById('colorDeseado');
   const colorPanel = document.querySelector('.art-main');
-  const backgroundVideo = document.getElementById('backgroundVideo');
-  const playBackgroundVideoButton = document.getElementById('playBackgroundVideo');
   const galleryMenuToggle = document.querySelector('.gallery-menu-toggle');
   const galleryMenu = document.getElementById('galleryMenu');
   const galleryFilters = document.querySelectorAll('.gallery-filter');
   const galleryCards = document.querySelectorAll('.gallery-card');
   const storageKey = 'vibraStudioNames';
+  const weatherWidget = document.getElementById('weatherWidget');
+  const weatherIcon = document.getElementById('weatherIcon');
+  const weatherTemp = document.getElementById('weatherTemp');
+  const weatherCondition = document.getElementById('weatherCondition');
+  const weatherApiKey = '309792feedb32cc954c62df370f8a045';
+  const defaultCity = 'Bogota';
+
+  if (weatherWidget && weatherIcon && weatherTemp && weatherCondition) {
+    const setWeatherLoadingState = () => {
+      weatherTemp.textContent = '--';
+      weatherCondition.textContent = 'Cargando clima...';
+    };
+
+    const renderWeather = (weatherData) => {
+      const temp = Math.round(weatherData.main.temp);
+      const condition = weatherData.weather[0].description;
+      const icon = weatherData.weather[0].icon;
+
+      weatherTemp.textContent = String(temp);
+      weatherCondition.textContent = condition;
+      weatherIcon.src = `https://openweathermap.org/img/wn/${icon}@2x.png`;
+      weatherIcon.alt = condition;
+    };
+
+    const fetchWeatherByCoords = async (lat, lon) => {
+      const weatherUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=metric&lang=es&appid=${weatherApiKey}`;
+      const response = await fetch(weatherUrl);
+      if (!response.ok) {
+        throw new Error('No se pudo obtener el clima.');
+      }
+
+      const data = await response.json();
+      renderWeather(data);
+    };
+
+    const fetchWeatherByCity = async (cityName) => {
+      const weatherUrl = `https://api.openweathermap.org/data/2.5/weather?q=${encodeURIComponent(cityName)}&units=metric&lang=es&appid=${weatherApiKey}`;
+      const response = await fetch(weatherUrl);
+      if (!response.ok) {
+        throw new Error('Ciudad no encontrada.');
+      }
+
+      const data = await response.json();
+      renderWeather(data);
+    };
+    const loadWeather = async () => {
+      setWeatherLoadingState();
+
+      try {
+        if (navigator.geolocation) {
+          const position = await new Promise((resolve, reject) => {
+            navigator.geolocation.getCurrentPosition(resolve, reject, {
+              enableHighAccuracy: true,
+              timeout: 10000,
+              maximumAge: 600000,
+            });
+          });
+
+          await fetchWeatherByCoords(position.coords.latitude, position.coords.longitude);
+          return;
+        }
+
+        await fetchWeatherByCity(defaultCity);
+      } catch (error) {
+        await fetchWeatherByCity(defaultCity);
+      }
+    };
+
+    loadWeather();
+  }
 
   if (galleryMenuToggle && galleryMenu) {
     galleryMenuToggle.addEventListener('click', () => {
@@ -44,34 +112,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     setGalleryFilter('all');
-  }
-
-  if (backgroundVideo && playBackgroundVideoButton) {
-    let isPlaying = false;
-
-    const setVideoState = () => {
-      const backgroundVideoWrapper = document.querySelector('.video-bg');
-      if (backgroundVideoWrapper) {
-        backgroundVideoWrapper.classList.toggle('is-visible', isPlaying);
-      }
-
-      if (isPlaying) {
-        backgroundVideo.play();
-      } else {
-        backgroundVideo.pause();
-        backgroundVideo.currentTime = 0;
-      }
-
-      playBackgroundVideoButton.textContent = isPlaying ? 'Pausar fondo' : 'Reproducir fondo';
-    };
-
-    playBackgroundVideoButton.addEventListener('click', () => {
-      isPlaying = !isPlaying;
-      setVideoState();
-    });
-
-    backgroundVideo.muted = true;
-    setVideoState();
   }
 
   if (hairColorPicker && desiredColorInput && colorPanel) {

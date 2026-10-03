@@ -44,16 +44,6 @@
 
     <div class="page-bg"></div>
 
-    <div class="video-bg" aria-hidden="true">
-      <video id="backgroundVideo" muted loop playsinline preload="auto">
-        <source src="2026 muy sofisticados.mp4" type="video/mp4" />
-      </video>
-    </div>
-
-    <button id="playBackgroundVideo" class="video-bg-toggle" type="button">
-      Reproducir fondo
-    </button>
-
     <header class="topbar container">
       <div class="brand">
         <span class="brand-mark">V</span>
@@ -69,6 +59,19 @@
         <a href="#galeria">Galería</a>
         <a href="#contacto">Contacto</a>
       </nav>
+
+      <div class="weather-widget" id="weatherWidget" role="region" aria-label="Clima actual" aria-live="polite">
+        <div class="weather-main">
+          <img id="weatherIcon" class="weather-icon" src="https://openweathermap.org/img/wn/02d@2x.png" alt="Icono del clima" />
+          <div class="weather-temp-group">
+            <div class="weather-temp">
+              <span id="weatherTemp">--</span>
+              <span class="weather-unit">°C</span>
+            </div>
+            <div class="weather-condition" id="weatherCondition">Cargando clima...</div>
+          </div>
+        </div>
+      </div>
 
       <a class="btn btn-primary" href="#contacto">Reservar</a>
     </header>
@@ -108,20 +111,18 @@
         </div>
 
         <div class="hero-art">
+          <div class="hero-video-frame">
+            <video class="hero-video" autoplay muted loop playsinline preload="auto" aria-label="Video de fondo del salón">
+              <source src="2026 muy sofisticados.mp4" type="video/mp4" />
+            </video>
+            <div class="hero-video-shade"></div>
+          </div>
           <div class="art-panel art-main">
             <label class="label" for="hairColor">Elige un color</label>
             <input class="color-picker" id="hairColor" type="color" value="#ff4d8d" aria-label="Elige el color de cabello que deseas" />
             <div class="orbit orbit-one"></div>
             <div class="orbit orbit-two"></div>
             <div class="orbit orbit-three"></div>
-          </div>
-          <div class="art-panel art-side">
-            <span class="label">Style</span>
-            <div class="sun"></div>
-            <div class="bars">
-              <span></span>
-              <span></span>
-            </div>
           </div>
         </div>
       </section>
