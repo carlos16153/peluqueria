@@ -594,6 +594,10 @@ h3 {
   gap: 18px;
 }
 
+.gallery-mobile-menu {
+  display: none;
+}
+
 .gallery-card {
   position: relative;
   min-height: 280px;
@@ -605,6 +609,7 @@ h3 {
   border: 1px solid rgba(255, 255, 255, 0.12);
   box-shadow: 0 18px 30px rgba(0, 0, 0, 0.12);
   background: #1a1a1f;
+  transition: opacity 0.2s ease, transform 0.2s ease;
 }
 
 .gallery-card img {
@@ -865,6 +870,77 @@ blockquote footer {
   .service-grid,
   .reviews-grid {
     grid-template-columns: 1fr;
+  }
+
+  .gallery-mobile-menu {
+    display: grid;
+    gap: 12px;
+    margin-bottom: 18px;
+  }
+
+  .gallery-menu-toggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    width: fit-content;
+    min-width: 150px;
+    padding: 12px 16px;
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    background: rgba(255, 255, 255, 0.03);
+    color: var(--text);
+    cursor: pointer;
+    font: inherit;
+  }
+
+  .gallery-menu-toggle span {
+    display: block;
+    width: 18px;
+    height: 2px;
+    background: var(--text);
+    border-radius: 2px;
+  }
+
+  .gallery-menu-toggle .menu-label {
+    width: auto;
+    height: auto;
+    background: transparent;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    font-size: 0.7rem;
+  }
+
+  .gallery-menu {
+    display: none;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+    padding: 12px;
+    border-radius: 16px;
+    border: 1px solid var(--line);
+    background: rgba(255, 255, 255, 0.02);
+  }
+
+  .gallery-menu.is-open {
+    display: grid;
+  }
+
+  .gallery-filter {
+    padding: 10px 12px;
+    border: 1px solid transparent;
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.03);
+    color: var(--text);
+    cursor: pointer;
+    font: inherit;
+    font-weight: 600;
+  }
+
+  .gallery-filter.is-active {
+    border-color: rgba(255, 209, 102, 0.6);
+    background: rgba(255, 209, 102, 0.12);
+    color: var(--yellow);
   }
 
   .gallery-grid {

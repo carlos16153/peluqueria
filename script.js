@@ -12,7 +12,39 @@ document.addEventListener('DOMContentLoaded', () => {
   const colorPanel = document.querySelector('.art-main');
   const backgroundVideo = document.getElementById('backgroundVideo');
   const playBackgroundVideoButton = document.getElementById('playBackgroundVideo');
+  const galleryMenuToggle = document.querySelector('.gallery-menu-toggle');
+  const galleryMenu = document.getElementById('galleryMenu');
+  const galleryFilters = document.querySelectorAll('.gallery-filter');
+  const galleryCards = document.querySelectorAll('.gallery-card');
   const storageKey = 'vibraStudioNames';
+
+  if (galleryMenuToggle && galleryMenu) {
+    galleryMenuToggle.addEventListener('click', () => {
+      const isOpen = galleryMenu.classList.toggle('is-open');
+      galleryMenuToggle.setAttribute('aria-expanded', String(isOpen));
+    });
+  }
+
+  if (galleryFilters.length && galleryCards.length) {
+    const setGalleryFilter = (filter) => {
+      galleryFilters.forEach((button) => {
+        button.classList.toggle('is-active', button.dataset.filter === filter);
+      });
+
+      galleryCards.forEach((card) => {
+        const matches = filter === 'all' || card.dataset.category === filter;
+        card.style.display = matches ? 'flex' : 'none';
+      });
+    };
+
+    galleryFilters.forEach((button) => {
+      button.addEventListener('click', () => {
+        setGalleryFilter(button.dataset.filter);
+      });
+    });
+
+    setGalleryFilter('all');
+  }
 
   if (backgroundVideo && playBackgroundVideoButton) {
     let isPlaying = false;

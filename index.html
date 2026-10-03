@@ -203,20 +203,37 @@
           <h2>Una sección pensada para inspirarte visualmente.</h2>
         </div>
 
+        <div class="gallery-mobile-menu">
+          <button class="gallery-menu-toggle" type="button" aria-expanded="false" aria-controls="galleryMenu">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span class="menu-label">Galería</span>
+          </button>
+
+          <div class="gallery-menu" id="galleryMenu" aria-label="Filtrar galería">
+            <button type="button" class="gallery-filter is-active" data-filter="all">Todos</button>
+            <button type="button" class="gallery-filter" data-filter="bob">Bob</button>
+            <button type="button" class="gallery-filter" data-filter="sleek">Sleek</button>
+            <button type="button" class="gallery-filter" data-filter="volumen">Volumen</button>
+            <button type="button" class="gallery-filter" data-filter="wave">Wave</button>
+          </div>
+        </div>
+
         <div class="gallery-grid">
-          <div class="gallery-card card-one">
+          <div class="gallery-card card-one" data-category="bob">
             <img src="imagenes/french-bob-texturizado-cabello-fino-volumen_.webp" alt="Bob texturizado" />
             <span>Bob texturizado</span>
           </div>
-          <div class="gallery-card card-two">
+          <div class="gallery-card card-two" data-category="sleek">
             <img src="imagenes/ba6e2819-b15d-4467-83af-e172c7fb854e_source-aspect-ratio_default_0.webp" alt="Peinado sleek" />
             <span>Peinado sleek</span>
           </div>
-          <div class="gallery-card card-three">
+          <div class="gallery-card card-three" data-category="volumen">
             <img src="imagenes/layered-waves-41119dbc296c47e0a7fa8d28a28934e8.webp" alt="Layer volumen" />
             <span>Layer volumen</span>
           </div>
-          <div class="gallery-card card-four">
+          <div class="gallery-card card-four" data-category="wave">
             <img src="imagenes/undefined.webp" alt="Wave glam" />
             <span>Wave glam</span>
           </div>
