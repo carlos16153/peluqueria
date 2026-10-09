@@ -10,10 +10,10 @@ document.addEventListener('DOMContentLoaded', () => {
   const hairColorPicker = document.getElementById('hairColor');
   const desiredColorInput = document.getElementById('colorDeseado');
   const colorPanel = document.querySelector('.art-main');
-  const galleryMenuToggle = document.querySelector('.gallery-menu-toggle');
-  const galleryMenu = document.getElementById('galleryMenu');
-  const galleryFilters = document.querySelectorAll('.gallery-filter');
-  const galleryCards = document.querySelectorAll('.gallery-card');
+  const galleryToggle = document.querySelector('.gallery-toggle');
+  const galleryGrid = document.getElementById('galleryGrid');
+  const navToggle = document.querySelector('.nav-toggle');
+  const mainNav = document.getElementById('mainNav');
   const storageKey = 'vibraStudioNames';
   const weatherWidget = document.getElementById('weatherWidget');
   const weatherIcon = document.getElementById('weatherIcon');
@@ -86,32 +86,39 @@ document.addEventListener('DOMContentLoaded', () => {
     loadWeather();
   }
 
-  if (galleryMenuToggle && galleryMenu) {
-    galleryMenuToggle.addEventListener('click', () => {
-      const isOpen = galleryMenu.classList.toggle('is-open');
-      galleryMenuToggle.setAttribute('aria-expanded', String(isOpen));
-    });
+  if (galleryToggle && galleryGrid) {
+    const galleryLabel = galleryToggle.querySelector('.menu-label');
+
+    if (galleryLabel) {
+      galleryToggle.addEventListener('click', () => {
+        const isOpen = galleryGrid.hidden;
+        galleryGrid.hidden = !isOpen;
+        galleryToggle.setAttribute('aria-expanded', String(isOpen));
+        galleryLabel.textContent = isOpen ? 'Ocultar imágenes' : 'Mostrar imágenes';
+      });
+    }
   }
 
-  if (galleryFilters.length && galleryCards.length) {
-    const setGalleryFilter = (filter) => {
-      galleryFilters.forEach((button) => {
-        button.classList.toggle('is-active', button.dataset.filter === filter);
-      });
-
-      galleryCards.forEach((card) => {
-        const matches = filter === 'all' || card.dataset.category === filter;
-        card.style.display = matches ? 'flex' : 'none';
-      });
+  if (navToggle && mainNav) {
+    const setNavOpen = (isOpen) => {
+      mainNav.classList.toggle('is-open', isOpen);
+      navToggle.setAttribute('aria-expanded', String(isOpen));
+      navToggle.setAttribute('aria-label', isOpen ? 'Cerrar menú' : 'Abrir menú');
     };
 
-    galleryFilters.forEach((button) => {
-      button.addEventListener('click', () => {
-        setGalleryFilter(button.dataset.filter);
-      });
+    navToggle.addEventListener('click', () => {
+      setNavOpen(navToggle.getAttribute('aria-expanded') !== 'true');
     });
 
-    setGalleryFilter('all');
+    mainNav.querySelectorAll('a').forEach((link) => {
+      link.addEventListener('click', () => setNavOpen(false));
+    });
+
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape') {
+        setNavOpen(false);
+      }
+    });
   }
 
   if (hairColorPicker && desiredColorInput && colorPanel) {

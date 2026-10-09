@@ -53,7 +53,13 @@
         </div>
       </div>
 
-      <nav class="nav" aria-label="Navegación principal">
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="mainNav" aria-label="Abrir menú">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+      <nav class="nav" id="mainNav" aria-label="Navegación principal">
         <a href="#servicios">Servicios</a>
         <a href="#nosotros">Nosotros</a>
         <a href="#galeria">Galería</a>
@@ -172,29 +178,29 @@
         </div>
 
         <div class="about-points">
-          <div class="point">
-            <span>01</span>
-            <div>
+          <details class="about-point" name="about-accordion" open>
+            <summary>
+              <span>01</span>
               <h3>Consulta</h3>
-              <p>Escuchamos lo que buscas y lo que te hace sentir bien.</p>
-            </div>
-          </div>
+            </summary>
+            <p>Escuchamos lo que buscas y lo que te hace sentir bien.</p>
+          </details>
 
-          <div class="point">
-            <span>02</span>
-            <div>
+          <details class="about-point" name="about-accordion">
+            <summary>
+              <span>02</span>
               <h3>Diseño</h3>
-              <p>Definimos una propuesta realista, moderna y adaptada a ti.</p>
-            </div>
-          </div>
+            </summary>
+            <p>Definimos una propuesta realista, moderna y adaptada a ti.</p>
+          </details>
 
-          <div class="point">
-            <span>03</span>
-            <div>
+          <details class="about-point" name="about-accordion">
+            <summary>
+              <span>03</span>
               <h3>Resultado</h3>
-              <p>Dejamos tu cabello impecable con brillo y personalidad.</p>
-            </div>
-          </div>
+            </summary>
+            <p>Dejamos tu cabello impecable con brillo y personalidad.</p>
+          </details>
         </div>
       </section>
 
@@ -204,24 +210,14 @@
           <h2>Una sección pensada para inspirarte visualmente.</h2>
         </div>
 
-        <div class="gallery-mobile-menu">
-          <button class="gallery-menu-toggle" type="button" aria-expanded="false" aria-controls="galleryMenu">
-            <span></span>
-            <span></span>
-            <span></span>
-            <span class="menu-label">Galería</span>
+        <div class="gallery-controls">
+          <button class="gallery-toggle" type="button" aria-expanded="false" aria-controls="galleryGrid">
+            <span class="menu-icon" aria-hidden="true"></span>
+            <span class="menu-label">Mostrar imágenes</span>
           </button>
-
-          <div class="gallery-menu" id="galleryMenu" role="group" aria-label="Filtrar galería">
-            <button type="button" class="gallery-filter is-active" data-filter="all">Todos</button>
-            <button type="button" class="gallery-filter" data-filter="bob">Bob</button>
-            <button type="button" class="gallery-filter" data-filter="sleek">Sleek</button>
-            <button type="button" class="gallery-filter" data-filter="volumen">Volumen</button>
-            <button type="button" class="gallery-filter" data-filter="wave">Wave</button>
-          </div>
         </div>
 
-        <div class="gallery-grid">
+        <div class="gallery-grid" id="galleryGrid" hidden>
           <div class="gallery-card card-one" data-category="bob">
             <img src="imagenes/french-bob-texturizado-cabello-fino-volumen_.webp" alt="Bob texturizado" />
             <span>Bob texturizado</span>
