@@ -10,8 +10,6 @@ document.addEventListener('DOMContentLoaded', () => {
   const hairColorPicker = document.getElementById('hairColor');
   const desiredColorInput = document.getElementById('colorDeseado');
   const colorPanel = document.querySelector('.art-main');
-  const galleryToggle = document.querySelector('.gallery-toggle');
-  const galleryGrid = document.getElementById('galleryGrid');
   const navToggle = document.querySelector('.nav-toggle');
   const mainNav = document.getElementById('mainNav');
   const storageKey = 'vibraStudioNames';
@@ -84,19 +82,6 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     loadWeather();
-  }
-
-  if (galleryToggle && galleryGrid) {
-    const galleryLabel = galleryToggle.querySelector('.menu-label');
-
-    if (galleryLabel) {
-      galleryToggle.addEventListener('click', () => {
-        const isOpen = galleryGrid.hidden;
-        galleryGrid.hidden = !isOpen;
-        galleryToggle.setAttribute('aria-expanded', String(isOpen));
-        galleryLabel.textContent = isOpen ? 'Ocultar imágenes' : 'Mostrar imágenes';
-      });
-    }
   }
 
   if (navToggle && mainNav) {
