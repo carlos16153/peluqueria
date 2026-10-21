@@ -7,7 +7,14 @@
       name="description"
       content="Peluquería con estilo vibrante y una tipografía clara."
     />
+    <meta name="theme-color" content="#0f0f12" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="VibrA Studio" />
     <title>VibrA Studio</title>
+    <link rel="manifest" href="./manifest.json" />
+    <link rel="icon" href="./icons/icon-192.png" sizes="192x192" type="image/png" />
+    <link rel="apple-touch-icon" href="./icons/icon-192.png" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -98,7 +105,13 @@
           <div class="hero-actions">
             <a class="btn btn-primary" href="#contacto">Pedir cita</a>
             <a class="btn btn-secondary" href="#servicios">Ver servicios</a>
+            <button class="btn btn-secondary pwa-install" id="installAppButton" type="button" hidden>
+              Instalar app
+            </button>
           </div>
+          <p class="pwa-install-help" id="installAppHelp" hidden>
+            Para instalar en iPhone o iPad, toca Compartir y selecciona «Añadir a pantalla de inicio».
+          </p>
 
           <ul class="hero-stats">
             <li>

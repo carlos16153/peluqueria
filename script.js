@@ -1,4 +1,51 @@
 document.addEventListener('DOMContentLoaded', () => {
+  const installAppButton = document.getElementById('installAppButton');
+  const installAppHelp = document.getElementById('installAppHelp');
+
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('./service-worker.js').catch((error) => {
+        console.error('No se pudo registrar el service worker:', error);
+      });
+    });
+  }
+
+  if (installAppButton) {
+    let installPrompt;
+
+    window.addEventListener('beforeinstallprompt', (event) => {
+      event.preventDefault();
+      installPrompt = event;
+      installAppButton.hidden = false;
+    });
+
+    installAppButton.addEventListener('click', async () => {
+      if (!installPrompt) {
+        return;
+      }
+
+      await installPrompt.prompt();
+      await installPrompt.userChoice;
+      installPrompt = null;
+      installAppButton.hidden = true;
+    });
+
+    window.addEventListener('appinstalled', () => {
+      installPrompt = null;
+      installAppButton.hidden = true;
+    });
+  }
+
+  if (
+    installAppHelp &&
+    (/iPad|iPhone|iPod/.test(navigator.userAgent) ||
+      (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1)) &&
+    !window.matchMedia('(display-mode: standalone)').matches &&
+    !navigator.standalone
+  ) {
+    installAppHelp.hidden = false;
+  }
+
   const footerInfo = document.querySelector('.footer-info');
   const welcomeOverlay = document.getElementById('welcomeOverlay');
   const welcomeForm = document.getElementById('welcomeForm');

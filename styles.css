@@ -293,6 +293,18 @@ h3 {
   margin-top: 26px;
 }
 
+.pwa-install[hidden],
+.pwa-install-help[hidden] {
+  display: none;
+}
+
+.pwa-install-help {
+  max-width: 36rem;
+  margin: 12px 0 0;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
 .hero-stats {
   list-style: none;
   padding: 0;
