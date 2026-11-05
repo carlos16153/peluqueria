@@ -3,9 +3,9 @@ const CACHE_NAME = `${CACHE_PREFIX}v1`;
 // Keep the app shell available when the device is offline.
 const PRECACHE_URLS = [
   './index.html',
-  './styles.css',
-  './script.js',
   './manifest.json',
+  './assets/css/styles.css',
+  './assets/js/app.js',
   './icons/icon-192.png',
   './icons/icon-512.png',
 ];

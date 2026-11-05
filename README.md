@@ -19,11 +19,14 @@ Landing page de peluquería con una estética moderna, vibrante y muy legible. L
 ## Estructura del proyecto
 
 - `index.html`: estructura principal de la landing page.
-- `styles.css`: estilos visuales, colores, layout y responsividad.
-- `script.js`: interacciones dinámicas, incluido el selector de color y su sincronización con el formulario de reserva.
-- `manifest.json` y `service-worker.js`: metadatos de instalación, estrategias de caché y soporte offline.
+- `assets/css/styles.css`: estilos visuales, colores, layout y responsividad.
+- `assets/js/app.js`: interacciones dinámicas, incluido el selector de color y su sincronización con el formulario de reserva.
+- `assets/js/service-worker.js`: estrategia de caché y soporte offline.
+- `manifest.json`: metadatos de instalación de la PWA.
 - `icons/`: iconos de 192 y 512 píxeles para la aplicación.
-- `imagenes/`: carpeta para las imágenes de la galería o sección de estilos.
+- `assets/images/`: imágenes de la galería y estilos del salón.
+- `assets/videos/`: recursos multimedia principales del sitio.
+- `components/`: componentes o fragmentos reutilizables del proyecto.
 
 ## Objetivo
 
